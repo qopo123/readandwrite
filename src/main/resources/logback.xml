@@ -43,7 +43,7 @@
 		</filter>
 	</appender>
 	
-	<logger name="com.yonyou" level="DEBUG"/>
+	<logger name="com.hua" level="DEBUG"/>
 	<logger name="jdbc.connection" level="OFF" />
 	<logger name="jdbc.audit" level="OFF" />
 	<logger name="jdbc.resultset" level="OFF" />
