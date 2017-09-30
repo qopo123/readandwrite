@@ -12,4 +12,5 @@ public interface UserService {
   public User selectUserByUserName(String userName);
 
   public List<User> selectAllUsers();
+  public List<User> selectReadAllUsers();
 }

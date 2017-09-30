@@ -24,14 +24,14 @@
 		<property name="mergeSql" value="true" />
 	</bean>
 
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+	<bean id="dataSource1" class="com.alibaba.druid.pool.DruidDataSource"
 		  init-method="init" destroy-method="close">
 		<!-- connection info -->
 		<property name="driverClassName">
 			<value>${jdbc.driver}</value>
 		</property>
 		<property name="url">
-			<value>${jdbc.url}</value>
+			<value>${jdbc1.url}</value>
 		</property>
 		<property name="username">
 			<value>${jdbc.username}</value>
@@ -74,7 +74,68 @@
 			<value>clientEncoding=UTF-8</value>
 		</property>
 	</bean>
+	<bean id="dataSource2" class="com.alibaba.druid.pool.DruidDataSource"
+		  init-method="init" destroy-method="close">
+		<!-- connection info -->
+		<property name="driverClassName">
+			<value>${jdbc.driver}</value>
+		</property>
+		<property name="url">
+			<value>${jdbc2.url}</value>
+		</property>
+		<property name="username">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+		<!-- 连接池最大使用连接数 -->
+		<property name="maxActive">
+			<value>${jdbc.pool.maxActive}</value>
+		</property>
+		<!-- 过滤器 -->
+		<property name="proxyFilters">
+			<list>
+				<ref bean="stat-filter" />
+			</list>
+		</property>
+		<!-- 初始化连接大小 -->
+		<property name="initialSize">
+			<value>${jdbc.pool.init}</value>
+		</property>
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait">
+			<value>${jdbc.pool.maxWait}</value>
+		</property>
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle">
+			<value>${jdbc.pool.minIdle}</value>
+		</property>
+		<!-- 自动清除无用连接 -->
+		<property name="removeAbandoned">
+			<value>${jdbc.pool.removeAbandoned}</value>
+		</property>
+		<!-- 清除无用连接的等待时间 -->
+		<property name="removeAbandonedTimeout">
+			<value>${jdbc.pool.removeAbandonedTimeout}</value>
+		</property>
+		<!-- 连接属性 -->
+		<property name="connectionProperties">
+			<value>clientEncoding=UTF-8</value>
+		</property>
+	</bean>
+	<bean id="dataSource" class="com.hua.tpwg.common.DymicDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<!-- write -->
+				<entry key="write" value-ref="dataSource1"/>
+				<!-- read -->
+				<entry key="read" value-ref="dataSource2"/>
+			</map>
 
+		</property>
+		<property name="defaultTargetDataSource" ref="dataSource1"/>
+	</bean>
 	<!-- mybatis文件配置，扫描所有mapper文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSource" p:configLocation="classpath:/mybatis-config.xml">

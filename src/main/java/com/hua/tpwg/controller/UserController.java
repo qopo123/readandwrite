@@ -28,4 +28,10 @@ public class UserController {
     LOGGER.debug("===========查询所有的用户========");
     return userService.selectAllUsers();
   }
+
+  @RequestMapping(value = "/read", method = RequestMethod.GET)
+  public List<User> selectAllReadUsers(){
+    LOGGER.debug("===========查询所有的用户========");
+    return userService.selectReadAllUsers();
+  }
 }

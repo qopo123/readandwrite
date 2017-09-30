@@ -5,7 +5,7 @@ package com.hua.tpwg.context;
  */
 public class DataSourceContextHoder {
 
-  private static final ThreadLocal<String> dataSourceNames = new ThreadLocal<String>();
+  public static final ThreadLocal<String> dataSourceNames = new ThreadLocal<String>();
 
   /**
    * 获取
