@@ -1,7 +1,14 @@
 # readandwrite
 技术选型
 
-spring mvc 
-spring 
+spring mvc
+ 
+spring
+ 
 mybatis 
+
 maven
+
+tomcat
+
+redis
