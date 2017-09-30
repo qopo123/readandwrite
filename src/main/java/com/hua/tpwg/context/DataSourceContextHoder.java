@@ -8,7 +8,7 @@ public class DataSourceContextHoder {
   public static final ThreadLocal<String> dataSourceNames = new ThreadLocal<String>();
 
   /**
-   * 获取
+   * 获取数据源
    * @return
    */
   public static String getDataSourceType(){
