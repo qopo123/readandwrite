@@ -58,4 +58,6 @@
 		<property name="maxInactiveIntervalInSeconds" value="${session.maxInactiveInterval}" />
 		<property name="redisNamespace" value="${session.redis.namespace}" />
 	</bean>
+
+
 </beans>

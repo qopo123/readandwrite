@@ -6,6 +6,7 @@ import com.hua.tpwg.entity.User;
 import com.hua.tpwg.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,14 +25,18 @@ public class UserServiceImpl implements UserService {
 
 
   @Override
-  @DataSource("write")
-  public List<User> selectAllUsers() {
+  @Transactional
+  @DataSource("read")
+  public List<User> selectReadAllUsers() {
     return userMapper.selectAllUsers();
   }
 
   @Override
-  @DataSource("read")
-  public List<User> selectReadAllUsers() {
+  @Transactional
+  @DataSource("write")
+  public List<User> selectAllUsers() {
+//    userMapper.insert();
+//    int i = 1 / 0;测事务
     return userMapper.selectAllUsers();
   }
 }

@@ -9,4 +9,7 @@
     <select id="selectAllUsers" resultMap="BaseResultMap">
         SELECT * FROM user
     </select>
+    <insert id="insert">
+        INSERT INTO user (user_name,pass_word) VALUE ("111","333333");
+    </insert>
 </mapper>

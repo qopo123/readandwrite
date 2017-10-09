@@ -34,4 +34,11 @@ public class UserController {
     LOGGER.debug("===========查询所有的用户========");
     return userService.selectReadAllUsers();
   }
+
+  @RequestMapping(value = "/name", method = RequestMethod.GET)
+  public String name(){
+    LOGGER.debug("===========查询用户名========");
+    String name = "haohao";
+    return name;
+  }
 }

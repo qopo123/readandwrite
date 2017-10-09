@@ -124,18 +124,13 @@
 			<value>clientEncoding=UTF-8</value>
 		</property>
 	</bean>
-	<bean id="dataSource" class="com.hua.tpwg.common.DymicDataSource">
-		<property name="targetDataSources">
-			<map key-type="java.lang.String">
-				<!-- write -->
-				<entry key="write" value-ref="dataSource1"/>
-				<!-- read -->
-				<entry key="read" value-ref="dataSource2"/>
-			</map>
 
-		</property>
-		<property name="defaultTargetDataSource" ref="dataSource1"/>
-	</bean>
+	<bean id="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		  p:dataSource-ref="dataSource" />
+
+	<!-- 对数据源进行事务管理 -->
+
 	<!-- mybatis文件配置，扫描所有mapper文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSource" p:configLocation="classpath:/mybatis-config.xml">
@@ -151,11 +146,20 @@
 		p:basePackage="com.hua.tpwg.dao"
 		p:sqlSessionFactoryBeanName="sqlSessionFactory" />
 
-	<!-- 对数据源进行事务管理 -->
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-		p:dataSource-ref="dataSource" />
+	<bean id="dataSource" class="com.hua.tpwg.common.DymicDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<!-- write -->
+				<entry key="write" value-ref="dataSource1"/>
+				<!-- read -->
+				<entry key="read" value-ref="dataSource2"/>
+			</map>
+
+		</property>
+		<property name="defaultTargetDataSource" ref="dataSource1"/>
+	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager"
-	proxy-target-class="true" />
+						  proxy-target-class="true" />
+
 </beans>
