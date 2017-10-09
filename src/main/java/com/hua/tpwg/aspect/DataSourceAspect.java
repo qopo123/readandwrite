@@ -3,8 +3,13 @@ package com.hua.tpwg.aspect;
 import com.hua.tpwg.annotations.DataSource;
 import com.hua.tpwg.context.DataSourceContextHoder;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
@@ -13,18 +18,20 @@ import java.lang.reflect.Method;
  * Created by yangchuanhua on 2017/9/28.
  */
 
-//@Aspect
-//@Component
+@Aspect
+@Component
+@Order(1)
 public class DataSourceAspect {
 
   private static final Logger logger = LoggerFactory.getLogger(DataSourceAspect.class);
 
-//  @Pointcut("execution(* com.hua.tpwg.service.*.*(..))")
+  @Pointcut("execution(* com.hua.tpwg.service.*.*(..))")
 //  @Pointcut("@annotation(com.hua.tpwg.annotations.DataSource)")
   //如果以注解作为切点，和@Transactional在一起注解有问题。会先走确定数据源再走切点
+  //可以对多个aop设置order属性，值越小权重越大
   public void pointcut(){}
 
-//  @Before(value = "pointcut()")
+  @Before(value = "pointcut()")
   public void before(JoinPoint point){
     logger.debug("===========①进入了切面=========");
     try {

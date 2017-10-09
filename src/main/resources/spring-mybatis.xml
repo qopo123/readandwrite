@@ -160,6 +160,6 @@
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager"
-						  proxy-target-class="true" />
+						  proxy-target-class="true" order="2"/>
 
 </beans>
