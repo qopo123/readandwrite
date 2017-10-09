@@ -159,7 +159,9 @@
 		<property name="defaultTargetDataSource" ref="dataSource1"/>
 	</bean>
 
+	<!--<tx:annotation-driven transaction-manager="transactionManager"-->
+						  <!--proxy-target-class="true"/>-->
 	<tx:annotation-driven transaction-manager="transactionManager"
-						  proxy-target-class="true" order="2"/>
+						  proxy-target-class="true"/>
 
 </beans>
