@@ -12,3 +12,7 @@ maven
 tomcat
 
 redis
+
+shiro
+
+spring session
