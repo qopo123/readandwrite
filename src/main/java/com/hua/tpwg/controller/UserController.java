@@ -23,6 +23,8 @@ public class UserController {
   @Autowired
   private UserService userService;
 
+//  @ApiOperation(value = "教程", httpMethod = "GET", response = List.class, notes = "教程")
+//  @ApiParam
   @RequestMapping(value = "/all", method = RequestMethod.GET)
   public List<User> selectAllUsers(){
     LOGGER.debug("===========查询所有的用户========");

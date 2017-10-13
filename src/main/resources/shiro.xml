@@ -20,7 +20,7 @@
 	<!-- 记住我cookie -->
 	<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
 		<constructor-arg value="rememberMe" />
-		<property name="domain" value="${shiro.domain}" />
+		<!--<property name="domain" value="${shiro.domain}" />-->
 		<property name="path" value="/" />
 		<property name="httpOnly" value="true" />
 		<property name="maxAge" value="2592000" /><!-- 30天 -->
@@ -62,6 +62,10 @@
 				/forgetpwd/**=anon
 				/api/**=anon
 				/template/**=anon
+				/swagger*/**=anon
+				/v2/**=anon
+				/webjars/**=anon
+				/user/**=anon
 				/**=authc
 			</value>
 		</property>
