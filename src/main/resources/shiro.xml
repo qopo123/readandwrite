@@ -65,7 +65,7 @@
 				/swagger*/**=anon
 				/v2/**=anon
 				/webjars/**=anon
-				/user/**=anon
+				/v1/user/**=anon
 				/**=authc
 			</value>
 		</property>
